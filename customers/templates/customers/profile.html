@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+
+    <h2 style="text-align: center;">Customer Profile</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div style="margin-bottom: 15px;">
+            <label>Name</label><br>
+            <input type="text" name="name" value="{{ customer_profile.name|default:'' }}" style="width:100%; padding:8px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Email</label><br>
+            <input type="email" name="email" value="{{ customer_profile.email|default:'' }}" style="width:100%; padding:8px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Phone</label><br>
+            <input type="text" name="phone" value="{{ customer_profile.phone|default:'' }}" style="width:100%; padding:8px;">
+        </div>
+
+        {% if customer.id %}
+        <div style="margin-bottom: 15px;">
+            <label>Customer ID</label><br>
+            <input type="text" value="{{ customer_profile.id }}" disabled style="width:100%; padding:8px; background:#eee;">
+        </div>
+        {% endif %}
+
+        <div style="text-align: center;">
+            <button type="submit" style="padding:10px 20px;">Save</button>
+            <a href="/home/" style="margin-left:10px;">Cancel</a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
